@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Stats for Dribbble">
+<meta name="author" content="Rob Sim">
+<meta name="keywords" content="rob sim, dribbble, stats, statistics, shots, followers, players, drafts">
+
+<!-- Title -->
+ <title>Popppular</title>
+
+<!-- Stylesheets -->
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <section id="average">
+    <ul id="avgPopularShots"></ul>
+    <script src="../js/jribbble.js"></script>
+    <script>
+    var callback = function (listDetails) {
+      var likesTotal = 0;
+      var followersTotal = 0;
+      var viewsTotal = 0;
+      var commentsTotal = 0;
+      var shotsTotal = 0;
+
+      listDetails.shots.forEach(function(shot) {
+        // do your normal stuff
+        likesTotal += shot.likes_count;
+        followersTotal += shot.player.followers_count;
+        viewsTotal += shot.views_count;
+        commentsTotal += shot.comments_count;
+        shotsTotal += shot.player.shots_count;
+      });
+      var avgLikes = Math.round(likesTotal / listDetails.shots.length);
+      var avgFollowers = Math.round(followersTotal / listDetails.shots.length);
+      var avgViews = viewsTotal / listDetails.shots.length;
+      var avgViewsPerLike = Math.round(avgViews / avgLikes);
+      var avgComments = Math.round(commentsTotal / listDetails.shots.length);
+      var avgShots = Math.round(shotsTotal / listDetails.shots.length);
+
+      var html = '<p>Right now, the average shot on the first popular page of dribble has <b>' + avgLikes + '</b> likes, '
+               + '<b>' + avgComments + '</b> comments and '
+               + '<b>' + avgViewsPerLike + '</b> views per like. '
+               + 'The average player who has a shot on the popular page has <b>' + avgFollowers + '</b> followers '
+               + 'and has posted <b>' +  avgShots +'</b> shots. ';
+
+      document.getElementById('avgPopularShots').innerHTML = html;
+    }
+
+    jribbble.getShotsByList('popular', callback, {page: 1, per_page: 12});
+    </script>
+  </section>
+</body>
+</html>
