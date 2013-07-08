@@ -41,11 +41,17 @@
       var avgComments = Math.round(commentsTotal / listDetails.shots.length);
       var avgShots = Math.round(shotsTotal / listDetails.shots.length);
 
-      var html = '<p>Right now, the average shot on the first popular page of dribble has <b>' + avgLikes + '</b> likes, '
-               + '<b>' + avgComments + '</b> comments and '
-               + '<b>' + avgViewsPerLike + '</b> views per like. '
-               + 'The average player who has a shot on the popular page has <b>' + avgFollowers + '</b> followers '
-               + 'and has posted <b>' +  avgShots +'</b> shots. ';
+      // var html = '<p>Right now, the average shot on the first popular page of dribble has <b>' + avgLikes + '</b> likes, '
+      //          + '<b>' + avgComments + '</b> comments and '
+      //          + '<b>' + avgViewsPerLike + '</b> views per like. '
+      //          + 'The average player who has a shot on the popular page has <b>' + avgFollowers + '</b> followers '
+      //          + 'and has posted <b>' +  avgShots +'</b> shots. ';
+
+      var html = '<li>Average Likes: <b>' + avgLikes +' </b></li>'
+              + '<li>Average Comments: <b>' + avgComments +' </b></li>'
+              + '<li>Average ViewsPerLike: <b>' + avgViewsPerLike +' </b></li>'
+              + '<li>Average Followers: <b>' + avgFollowers +' </b></li>'
+              + '<li>Average Shots: <b>' + avgShots +' </b></li>'
 
       document.getElementById('avgPopularShots').innerHTML = html;
     }
